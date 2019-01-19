@@ -101,7 +101,7 @@ public class Indexer<T> {
         return true;
     }
 
-    public List<DocumentScore> search(String query) {
+    public List<SearchResult> search(String query) {
         List<String> queries = this.tokenizer.tokenizing(query);
         Map<String, Double> results = new HashMap<>(); // {docId, score}
         for (String q : queries) {
@@ -117,7 +117,7 @@ public class Indexer<T> {
 
         return results.entrySet().stream()
                 .sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
-                .map(e -> new DocumentScore(e.getKey(), e.getValue()))
+                .map(e -> new SearchResult(e.getKey(), e.getValue()))
                 .collect(Collectors.toList());
     }
 

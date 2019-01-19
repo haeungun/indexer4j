@@ -41,13 +41,13 @@ public class IndexerTest {
         index.build();
 
         String query = "First";
-        List<DocumentScore> result = index.search(query);
+        List<SearchResult> result = index.search(query);
 
         assertEquals(1, result.size());
         assertEquals("doc1", result.get(0).getDocId());
 
         String query2 = "Lorem ipsum";
-        List<DocumentScore> result2 = index.search(query2);
+        List<SearchResult> result2 = index.search(query2);
 
         assertEquals(4, result2.size());
         assertEquals("doc3", result2.get(0).getDocId());
@@ -66,13 +66,13 @@ public class IndexerTest {
         index.build();
 
         String query = "First";
-        List<DocumentScore> result = index.search(query);
+        List<SearchResult> result = index.search(query);
 
         assertEquals(1, result.size());
         assertEquals("doc1", result.get(0).getDocId());
 
         String query2 = "Lorem ipsum";
-        List<DocumentScore> result2 = index.search(query2);
+        List<SearchResult> result2 = index.search(query2);
 
         assertEquals(4, result2.size());
         assertEquals("doc1", result2.get(0).getDocId());
@@ -98,13 +98,13 @@ public class IndexerTest {
         assertTrue(index.load(this.filePath));
 
         String query = "First";
-        List<DocumentScore> result = index.search(query);
+        List<SearchResult> result = index.search(query);
 
         assertEquals(1, result.size());
         assertEquals("doc1", result.get(0).getDocId());
 
         String query2 = "Lorem ipsum";
-        List<DocumentScore> result2 = index.search(query2);
+        List<SearchResult> result2 = index.search(query2);
 
         assertEquals(4, result2.size());
         assertEquals("doc3", result2.get(0).getDocId());

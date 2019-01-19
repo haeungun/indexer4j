@@ -1,11 +1,11 @@
 package com.haeungun.index4j;
 
-public class DocumentScore implements Comparable<DocumentScore> {
+public class SearchResult implements Comparable<SearchResult> {
 
     private final String docId;
     private final double score;
 
-    public DocumentScore(String docId, double score) {
+    public SearchResult(String docId, double score) {
         this.docId = docId;
         this.score = score;
     }
@@ -20,7 +20,7 @@ public class DocumentScore implements Comparable<DocumentScore> {
     }
 
     @Override
-    public int compareTo(DocumentScore s) {
+    public int compareTo(SearchResult s) {
         if (this.score < s.getScore()) return -1;
         if (this.score > s.getScore()) return 1;
         return 0;
