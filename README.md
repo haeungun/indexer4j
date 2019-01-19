@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/haeungun/index4j.svg?branch=master)](https://travis-ci.com/haeungun/index4j)
+[![codecov](https://codecov.io/gh/haeungun/index4j/branch/master/graph/badge.svg)](https://codecov.io/gh/haeungun/index4j)
+
 # index4j
  Simple full text indexing and searching library for Java
 
@@ -18,6 +21,7 @@ repositories {
 ## TODO
 - Support ngram, wordgram
 - Parrallel build and search
+- Support JDK 11 CI on travis CI (Jacoco not supports yet)
 
 ## Examples
 ```java

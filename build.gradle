@@ -3,6 +3,7 @@ version '0.1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'com.novoda.bintray-release' 
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 
@@ -33,4 +34,12 @@ publish {
     website = 'https://github.com/haeungun/index4j'
     issueTracker = 'https://github.com/haeungun/index4j/issues'
     repository = 'https://github.com/haeungun/index4j.git'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+        csv.enabled true
+    }
 }

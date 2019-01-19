@@ -1,10 +1,9 @@
 language: java
 
 jdk:
+  - openjdk8
   - oraclejdk8
-  - oraclejdk11
   - openjdk10
-  - openjdk11
 
 before_script:
   - ./gradlew assemble
@@ -12,3 +11,7 @@ before_script:
 script:
   - ./gradlew test -i
   - ./gradlew build
+  - ./gradlew jacocoTestReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
