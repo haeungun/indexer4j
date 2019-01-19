@@ -28,14 +28,14 @@ public class IndexerTest {
     @Test
     public void addDocument_test() throws UndefinedDocumentIdException, UnsupportedRelevanceException {
         Indexer<WrongDocument> index = new Indexer<>();
-        assertFalse(index.add(new WrongDocument(), false));
+        assertFalse(index.add(new WrongDocument()));
     }
 
     @Test
     public void BM25_test() throws UndefinedDocumentIdException, UnsupportedRelevanceException {
         Indexer<ExampleDocument> index = new Indexer<>();
         for (ExampleDocument document : this.documents) {
-            index.add(document, false);
+            index.add(document);
         }
 
         index.build();
@@ -60,7 +60,7 @@ public class IndexerTest {
     public void TFIDF_test() throws UnsupportedRelevanceException, UndefinedDocumentIdException {
         Indexer<ExampleDocument> index = new Indexer<>(Relevance.TFIDF);
         for (ExampleDocument document : this.documents) {
-            index.add(document, false);
+            index.add(document);
         }
 
         index.build();
@@ -85,7 +85,7 @@ public class IndexerTest {
     public void save_test() throws UnsupportedRelevanceException, UndefinedDocumentIdException {
         Indexer<ExampleDocument> index = new Indexer<>();
         for (ExampleDocument document : this.documents) {
-            index.add(document, false);
+            index.add(document);
         }
 
         index.build();

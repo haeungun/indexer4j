@@ -1,11 +1,19 @@
-plugins {
-    id 'java'
-}
-
 group 'index4j'
-version '1.0-SNAPSHOT'
+version '0.1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'com.novoda.bintray-release' 
 
 sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -13,4 +21,16 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+publish {
+    repoName = 'index4j'
+    userOrg = 'haeungun'
+    groupId = 'com.haeungun.index4j'
+    artifactId = 'index4j'
+    publishVersion = '0.1.0'
+    desc = 'Simple full text indexing and searching library for Java'
+    website = 'https://github.com/haeungun/index4j'
+    issueTracker = 'https://github.com/haeungun/index4j/issues'
+    repository = 'https://github.com/haeungun/index4j.git'
 }

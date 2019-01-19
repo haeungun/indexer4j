@@ -62,7 +62,12 @@ public class Indexer<T> {
         }
     }
 
-    public boolean add(T doc, boolean allowDuplicated) throws UndefinedDocumentIdException {
+    public boolean add(T doc) throws UndefinedDocumentIdException {
+        boolean allowOverwrite = true;
+        return this.add(doc, allowOverwrite);
+    }
+
+    public boolean add(T doc, boolean allowOverwrite) throws UndefinedDocumentIdException {
         if (!this.extractor.isDocument(doc)) return false;
 
         DocumentMeta meta;
@@ -73,7 +78,7 @@ public class Indexer<T> {
             return false;
         }
 
-        if (!allowDuplicated && this.documents.containsKey(meta.getDocId())) return false;
+        if (!allowOverwrite && this.documents.containsKey(meta.getDocId())) return false;
 
         this.documents.put(meta.getDocId(), meta);
         return true;

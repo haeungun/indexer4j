@@ -2,8 +2,13 @@
  Simple full text indexing and searching library for Java
 
 ## Install
-``` mvn
-TBA
+### Gradle
+``` gradle
+repositories {
+    maven {
+        url  "https://dl.bintray.com/haeungun/index4j" 
+    }
+}
 ```
 
 ## Features
