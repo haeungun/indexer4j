@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.com/haeungun/index4j.svg?branch=master)](https://travis-ci.com/haeungun/index4j)
-[![codecov](https://codecov.io/gh/haeungun/index4j/branch/master/graph/badge.svg)](https://codecov.io/gh/haeungun/index4j)
+[![Build Status](https://travis-ci.com/haeungun/index4j.svg?branch=master)](https://travis-ci.com/haeungun/indexer4j)
+[![codecov](https://codecov.io/gh/haeungun/index4j/branch/master/graph/badge.svg)](https://codecov.io/gh/haeungun/indexer4j)
 
-# index4j
+# indexer4j
  Simple full text indexing and searching library for Java
 
 ## Install
@@ -9,7 +9,7 @@
 ``` gradle
 repositories {
     maven {
-        url  "https://dl.bintray.com/haeungun/index4j" 
+        url  "https://dl.bintray.com/haeungun/indexer4j"
     }
 }
 ```
@@ -22,6 +22,7 @@ repositories {
 - Support ngram, wordgram
 - Parrallel build and search
 - Support JDK 11 CI on travis CI (Jacoco not supports yet)
+- Improve saving and loading features
 
 ## Examples
 ```java

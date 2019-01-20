@@ -1,4 +1,4 @@
-group 'index4j'
+group 'indexer4j'
 version '0.1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -25,15 +25,15 @@ dependencies {
 }
 
 publish {
-    repoName = 'index4j'
+    repoName = 'indexer4j'
     userOrg = 'haeungun'
-    groupId = 'com.haeungun.index4j'
-    artifactId = 'index4j'
+    groupId = 'com.haeungun.indexer4j'
+    artifactId = 'indexer4j'
     publishVersion = '0.1.0'
     desc = 'Simple full text indexing and searching library for Java'
-    website = 'https://github.com/haeungun/index4j'
-    issueTracker = 'https://github.com/haeungun/index4j/issues'
-    repository = 'https://github.com/haeungun/index4j.git'
+    website = 'https://github.com/haeungun/indexer4j'
+    issueTracker = 'https://github.com/haeungun/indexer4j/issues'
+    repository = 'https://github.com/haeungun/indexer4j.git'
 }
 
 jacocoTestReport {
