@@ -9,10 +9,6 @@
 ### Gradle
 ``` gradle
 repositories {
-    maven {
-        url  "https://dl.bintray.com/haeungun/indexer4j"
-    }
-    // or
     jcenter()
 }
 
@@ -36,7 +32,7 @@ dependencies {
 - Easy indexing with field annotation
 
 ## TODO
-- Support ngram, wordgram
+- Support ngram
 - Parrallel build and search
 - Support JDK 11 CI on travis CI (Jacoco does not support JDK11 yet)
 - Improve saving and loading features
@@ -81,7 +77,7 @@ List<ExampleDocument> documents = Arrays.asList(
             new ExampleDocument("doc4", "Forth Document", "Lorem"));
 
 Indexer<ExampleDocument> index = new Indexer<>();
-for (ExampleDocument document : this.documents) {
+for (ExampleDocument document : documents) {
      index.add(document);
 }
 
