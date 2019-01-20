@@ -9,10 +9,6 @@
 ### Gradle
 ``` gradle
 repositories {
-    maven {
-        url  "https://dl.bintray.com/haeungun/indexer4j"
-    }
-    // or
     jcenter()
 }
 
