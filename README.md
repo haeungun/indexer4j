@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.com/haeungun/index4j.svg?branch=master)](https://travis-ci.com/haeungun/indexer4j)
-[![codecov](https://codecov.io/gh/haeungun/index4j/branch/master/graph/badge.svg)](https://codecov.io/gh/haeungun/indexer4j)
+[![Build Status](https://travis-ci.com/haeungun/indexer4j.svg?branch=master)](https://travis-ci.com/haeungun/indexer4j)
+[![codecov](https://codecov.io/gh/haeungun/indexer4j/branch/master/graph/badge.svg)](https://codecov.io/gh/haeungun/indexer4j)
 
 # indexer4j
  Simple full text indexing and searching library for Java
@@ -11,6 +11,12 @@ repositories {
     maven {
         url  "https://dl.bintray.com/haeungun/indexer4j"
     }
+    // or
+    jcenter()
+}
+
+dependencies {
+   compile 'com.haeungun.indexer4j:indexer4j:<:version>'
 }
 ```
 
@@ -21,7 +27,7 @@ repositories {
 ## TODO
 - Support ngram, wordgram
 - Parrallel build and search
-- Support JDK 11 CI on travis CI (Jacoco not supports yet)
+- Support JDK 11 CI on travis CI (Jacoco does not support JDK11 yet)
 - Improve saving and loading features
 
 ## Examples
@@ -57,18 +63,22 @@ public class ExampleDocument {
     }
 }
 
-private List<ExampleDocument> documents = Arrays.asList(
+List<ExampleDocument> documents = Arrays.asList(
             new ExampleDocument("doc1", "First Document", "Lorem Lorem Lorem Lorem Lorem"),
             new ExampleDocument("doc2", "Third Document", "Lorem is hello java python"),
             new ExampleDocument("doc3", "Second Document", "Lorem ipsum dolor"),
             new ExampleDocument("doc4", "Forth Document", "Lorem"));
 
-Indexer<ExampleDocument> index = new Indexer<>(Relevance.BM25);
+Indexer<ExampleDocument> index = new Indexer<>();
 for (ExampleDocument document : this.documents) {
      index.add(document);
 }
 
 index.build();
 
-List<SearchResult> result = index.search(query);
+List<SearchResult> result = index.search("First");
+// output => [{docId="doc1", score="..."}]
+
+List<SearchResult> result2 = index.search("Lorem ipsum");
+// output = [{docId="doc3", score="..."}, {docId="doc1", score="..."}, ...] 
 ```
