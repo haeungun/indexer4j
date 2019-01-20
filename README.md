@@ -1,3 +1,4 @@
+[ ![Download](https://api.bintray.com/packages/haeungun/indexer4j/indexer4j/images/download.svg?version=0.1.0) ](https://bintray.com/haeungun/indexer4j/indexer4j/0.1.0/link)
 [![Build Status](https://travis-ci.com/haeungun/indexer4j.svg?branch=master)](https://travis-ci.com/haeungun/indexer4j)
 [![codecov](https://codecov.io/gh/haeungun/indexer4j/branch/master/graph/badge.svg)](https://codecov.io/gh/haeungun/indexer4j)
 
@@ -18,6 +19,16 @@ repositories {
 dependencies {
    compile 'com.haeungun.indexer4j:indexer4j:<:version>'
 }
+```
+
+### Maven
+```maven
+<dependency>
+	<groupId>com.haeungun.indexer4j</groupId>
+	<artifactId>indexer4j</artifactId>
+	<version>0.1.0</version>
+	<type>pom</type>
+</dependency>
 ```
 
 ## Features
