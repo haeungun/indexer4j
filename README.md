@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/haeungun/indexer4j/indexer4j/images/download.svg?version=0.1.0) ](https://bintray.com/haeungun/indexer4j/indexer4j/0.1.0/link)
+[ ![Download](https://api.bintray.com/packages/haeungun/indexer4j/indexer4j/images/download.svg) ](https://bintray.com/haeungun/indexer4j/indexer4j/_latestVersion)
 [![Build Status](https://travis-ci.com/haeungun/indexer4j.svg?branch=master)](https://travis-ci.com/haeungun/indexer4j)
 [![codecov](https://codecov.io/gh/haeungun/indexer4j/branch/master/graph/badge.svg)](https://codecov.io/gh/haeungun/indexer4j)
 
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-   compile 'com.haeungun.indexer4j:indexer4j:<:version>'
+   compile 'com.haeungun.indexer4j:indexer4j:<:the-latest-version>'
 }
 ```
 
@@ -22,7 +22,7 @@ dependencies {
 <dependency>
 	<groupId>com.haeungun.indexer4j</groupId>
 	<artifactId>indexer4j</artifactId>
-	<version>0.1.0</version>
+	<version>the-latest-version</version>
 	<type>pom</type>
 </dependency>
 ```
