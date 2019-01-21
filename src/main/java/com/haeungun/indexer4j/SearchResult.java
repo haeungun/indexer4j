@@ -18,15 +18,15 @@ package com.haeungun.indexer4j;
 
 public class SearchResult implements Comparable<SearchResult> {
 
-    private final String docId;
+    private final Object docId;
     private final double score;
 
-    public SearchResult(String docId, double score) {
+    public SearchResult(Object docId, double score) {
         this.docId = docId;
         this.score = score;
     }
 
-    public String getDocId() {
+    public Object getDocId() {
         return this.docId;
     }
 

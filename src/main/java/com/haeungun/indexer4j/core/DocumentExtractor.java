@@ -36,7 +36,7 @@ public class DocumentExtractor<T> {
     }
 
     public DocumentMeta extractDocumentMeta(T doc) throws UndefinedDocumentIdException, IllegalAccessException {
-        String docId = this.extractDocumentId(doc);
+        Object docId = this.extractDocumentId(doc);
         List<String> fieldValues = this.extractDocumentFieldValues(doc);
 
         List<String> tokenizedValues = new ArrayList<>();
@@ -48,13 +48,13 @@ public class DocumentExtractor<T> {
         return new DocumentMeta(docId, tokenizedValues);
     }
 
-    private String extractDocumentId(T doc) throws IllegalAccessException, UndefinedDocumentIdException {
+    private Object extractDocumentId(T doc) throws IllegalAccessException, UndefinedDocumentIdException {
         if (this.fields == null) this.setFieldsByDocument(doc);
 
         for (Field field : this.fields) {
             if (field.isAnnotationPresent(DocumentId.class)) {
                 field.setAccessible(true);
-                return (String) field.get(doc);
+                return field.get(doc);
             }
         }
 
