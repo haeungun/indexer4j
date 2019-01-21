@@ -20,6 +20,7 @@ import com.haeungun.indexer4j.core.DocumentExtractor;
 import com.haeungun.indexer4j.core.relevance.BM25Ranker;
 import com.haeungun.indexer4j.core.tokenizer.Tokenizer;
 import com.haeungun.indexer4j.core.tokenizer.RegexTokenizer;
+import com.haeungun.indexer4j.exceptions.DuplicatedDocumentException;
 import com.haeungun.indexer4j.exceptions.UndefinedDocumentIdException;
 import com.haeungun.indexer4j.core.relevance.RelevanceRanker;
 import com.haeungun.indexer4j.utils.Serializer;
@@ -29,13 +30,13 @@ import java.util.stream.Collectors;
 
 public class Indexer<T> {
 
-    private Map<String, Map<String, Double>> index; // {term, {docId, score}}
-    private Map<String, DocumentMeta> documents;
+    private Map<String, Map<Object, Double>> index; // {term, {docId, score}}
+    private Map<Object, DocumentMeta> documents;
 
     private DocumentExtractor<T> extractor;
     private Tokenizer tokenizer;
     private RelevanceRanker ranker;
-    private Serializer<Map<String, Map<String, Double>>> serializer;
+    private Serializer<Map<String, Map<Object, Double>>> serializer;
 
     /**
      * Constructor to create a Indexer object
@@ -75,11 +76,11 @@ public class Indexer<T> {
 
         List<List<String>> docs = this.convertDocumentsToStringList();
 
-        for (String docId : this.documents.keySet()) {
+        for (Object docId : this.documents.keySet()) {
             DocumentMeta doc = this.documents.get(docId);
 
             for (String word : doc.getTokenizedWords()) {
-                Map<String, Double> scores = this.index.get(word);
+                Map<Object, Double> scores = this.index.get(word);
                 if (scores == null) {
                     scores = new HashMap<>();
                     this.index.put(word, scores);
@@ -99,7 +100,7 @@ public class Indexer<T> {
      * @throws UndefinedDocumentIdException when the DocumentId is not designated
      */
     public boolean add(T doc) throws UndefinedDocumentIdException {
-        boolean allowOverwrite = true;
+        boolean allowOverwrite = false;
         return this.add(doc, allowOverwrite);
     }
 
@@ -121,7 +122,8 @@ public class Indexer<T> {
             return false;
         }
 
-        if (!allowOverwrite && this.documents.containsKey(meta.getDocId())) return false;
+        if (!allowOverwrite && this.documents.containsKey(meta.getDocId()))
+            throw new DuplicatedDocumentException(meta.getDocId().toString());
 
         this.documents.put(meta.getDocId(), meta);
         return true;
@@ -160,18 +162,28 @@ public class Indexer<T> {
     }
 
     /**
-     *
      * Retrieve search results from a inverted index.
      * @param query to search documents
-     * @return the list of SearchResult
+     * @return the list of SearchResult in default topK
      */
     public List<SearchResult> search(String query) {
+        int defaultTopK = 100;
+        return this.search(query, defaultTopK);
+    }
+
+    /**
+     * Retrieve search results from a inverted index.
+     * @param query to search documents
+     * @param topK the number of maximum documents
+     * @return the list of SearchResults in topK
+     */
+    public List<SearchResult> search(String query, int topK) {
         List<String> queries = this.tokenizer.tokenizing(query);
-        Map<String, Double> results = new HashMap<>(); // {docId, score}
+        Map<Object, Double> results = new HashMap<>(); // {docId, score}
         for (String q : queries) {
             if (index.containsKey(q)) {
-                Map<String, Double> scores = this.index.get(q);
-                for (String docId : scores.keySet()) {
+                Map<Object, Double> scores = this.index.get(q);
+                for (Object docId : scores.keySet()) {
                     double score = results.getOrDefault(docId, 0.0);
                     score += scores.get(docId);
                     results.put(docId, score);
@@ -182,12 +194,13 @@ public class Indexer<T> {
         return results.entrySet().stream()
                 .sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
                 .map(e -> new SearchResult(e.getKey(), e.getValue()))
+                .limit(topK)
                 .collect(Collectors.toList());
     }
 
     private List<List<String>> convertDocumentsToStringList() {
         List<List<String>> docs = new ArrayList<>();
-        for (String docId : this.documents.keySet()) {
+        for (Object docId : this.documents.keySet()) {
             docs.add(this.documents.get(docId).getTokenizedWords());
         }
         return docs;

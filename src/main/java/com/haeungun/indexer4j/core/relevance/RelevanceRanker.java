@@ -25,7 +25,7 @@ public interface RelevanceRanker {
      * @param term given term
      * @param doc given document
      * @param docs all documents term list
-     * @return
+     * @return calculated score
      */
     double rank(String term, List<String> doc, List<List<String>> docs);
 

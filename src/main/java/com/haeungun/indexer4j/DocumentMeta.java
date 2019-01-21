@@ -20,15 +20,15 @@ import java.util.List;
 
 public class DocumentMeta {
 
-    private final String docId;
+    private final Object docId;
     private final List<String> tokenizedWords;
 
-    public DocumentMeta(String docId, List<String> tokenizedWords) {
+    public DocumentMeta(Object docId, List<String> tokenizedWords) {
         this.docId = docId;
         this.tokenizedWords = tokenizedWords;
     }
 
-    public String getDocId() {
+    public Object getDocId() {
         return this.docId;
     }
 
@@ -38,7 +38,7 @@ public class DocumentMeta {
 
     @Override
     public String toString() {
-        return "DocumentMeta{docId=" + this.docId
+        return "DocumentMeta{docId=" + this.docId.toString()
                 + ", tokenizedWords=" + this.tokenizedWords.toString() + "}";
     }
 }
