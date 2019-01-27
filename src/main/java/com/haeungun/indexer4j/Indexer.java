@@ -47,11 +47,19 @@ public class Indexer<T> {
     }
 
     /**
-     * Constructor to create a Indexer object
+     * Constructor to create a Indexer object with default tokenizer
      * @param ranker for ranking algorithm(BM25, TFIDF, etc..)
      */
     public Indexer(RelevanceRanker ranker) {
         this(ranker, new RegexTokenizer("\\W+"));
+    }
+
+    /**
+     * Constructor to create a Indexer object with default ranker
+     * @param tokenizer for term and document
+     */
+    public Indexer(Tokenizer tokenizer) {
+        this(new BM25Ranker(), tokenizer);
     }
 
     /**
