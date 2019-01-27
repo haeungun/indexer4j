@@ -37,8 +37,8 @@ public class IndexerTest {
 
     private List<ExampleDocument> documents = Arrays.asList(
             new ExampleDocument("doc1", "First Document", "Lorem Lorem Lorem Lorem Lorem"),
-            new ExampleDocument("doc2", "Third Document", "Lorem is hello java python"),
-            new ExampleDocument("doc3", "Second Document", "Lorem ipsum dolor"),
+            new ExampleDocument("doc2", "Second Document", "Lorem is hello java python"),
+            new ExampleDocument("doc3", "Third Document", "Lorem ipsum dolor"),
             new ExampleDocument("doc4", "Forth Document", "Lorem")
     );
 
