@@ -29,10 +29,10 @@ dependencies {
 
 ## Features
 - Support TF-IDF, BM25 score
+- Support Regex, N-gram tokenizer
 - Easy indexing with field annotation
 
 ## TODO
-- Support ngram
 - Parrallel build and search
 - Support JDK 11 CI on travis CI (Jacoco does not support JDK11 yet)
 - Improve saving and loading features
