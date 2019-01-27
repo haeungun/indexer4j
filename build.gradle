@@ -1,5 +1,5 @@
 group 'indexer4j'
-version '0.2.0-SNAPSHOT'
+version '0.3.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'com.novoda.bintray-release' 
@@ -29,7 +29,7 @@ publish {
     userOrg = 'haeungun'
     groupId = 'com.haeungun.indexer4j'
     artifactId = 'indexer4j'
-    publishVersion = '0.2.0'
+    publishVersion = '0.3.0'
     desc = 'Simple full text indexing and searching library for Java'
     website = 'https://github.com/haeungun/indexer4j'
     issueTracker = 'https://github.com/haeungun/indexer4j/issues'
